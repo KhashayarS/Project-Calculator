@@ -1,0 +1,45 @@
+:root {
+    --screenColor: #272727;
+    --calcBodyColor: #2C2C2C;
+    --normalBtnColor: #373737;
+    --eqaulSignColor: #0D761D;
+    --clearBtnColor: #A21223;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(17 24 39);
+    color: rgb(229, 231, 235);
+    height: 100vh;
+}
+
+.container {
+    border: 2px solid hotpink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#calcContainer {
+    width: 300px;
+    height: 600px;
+    background-color: var(--calcBodyColor);
+}
+
+.allBtnContainer {
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.normalBtn {
+    width: 20%;
+}
+

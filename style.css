@@ -32,7 +32,7 @@ body {
     background-color: var(--calcBodyColor);
 }
 
-.allBtnContainer {
+#allBtnContainer {
     border: 2px solid blue;
     display: flex;
     flex-direction: row;

@@ -6,15 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Project: Calculator</title>
         <link rel="stylesheet" href="./style.css">
+        <script defer src="./script.js"></script>
     </head>
 
     <body>
         <div class="container">
             <div id="calcContainer">
-                <div id="screen">
-                    1234
-                </div>
-                <div class="allBtnContainer">
+                <div id="screen"></div>
+                <div id="allBtnContainer">
 
                     <button id="clearBtn" class="normalBtn">AC</button>
                     <button id="openBracketBtn" class="normalBtn">(</button>
@@ -22,29 +21,29 @@
                     <button id="moduloBtn" class="normalBtn">mod</button>
                     <button id="piNumBtn" class="normalBtn">π</button>
 
-                    <button id="digitSevenBtn" class="normalBtn">7</button>
-                    <button id="digitEightBtn" class="normalBtn">8</button>
-                    <button id=digitNineBtn" class="normalBtn">9</button>
-                    <button id="divisionBtn" class="normalBtn">÷</button>
-                    <button id="sqrtBtn" class="normalBtn">√</button>
+                    <button id="digitSevenBtn" value="7" mathRole="operand" class="normalBtn">7</button>
+                    <button id="digitEightBtn" value="8" mathRole="operand" class="normalBtn">8</button>
+                    <button id=digitNineBtn" value="9" mathRole="operand" class="normalBtn">9</button>
+                    <button id="divisionBtn" value="divide" mathrole="operator" class="normalBtn">÷</button>
+                    <button id="sqrtBtn" value="sqrt" mathrole="operator" class="normalBtn">√</button>
 
-                    <button id="fourBtn" class="normalBtn">4</button>
-                    <button id="fiveBtn" class="normalBtn">5</button>
-                    <button id="sixBtn" class="normalBtn">6</button>
-                    <button id="multBtn" class="normalBtn">×</button>
-                    <button id="sqauredBtn" class="normalBtn">x²</button>
+                    <button id="fourBtn" value="4" mathRole="operand" class="normalBtn">4</button>
+                    <button id="fiveBtn" value="5" mathRole="operand" class="normalBtn">5</button>
+                    <button id="sixBtn" value="6" mathRole="operand" class="normalBtn">6</button>
+                    <button id="multBtn" value="multiply" mathrole="operator" class="normalBtn">×</button>
+                    <button id="sqauredBtn" value="squared" mathrole="operator" class="normalBtn">x²</button>
 
-                    <button id="oneBtn" class="normalBtn">1</button>
-                    <button id="twoBtn" class="normalBtn">2</button>
-                    <button id=threeBtn" class="normalBtn">3</button>
-                    <button id="minusBtn" class="normalBtn">-</button>
+                    <button id="oneBtn" value="1" mathRole="operand" class="normalBtn">1</button>
+                    <button id="twoBtn" value="2" mathRole="operand" class="normalBtn">2</button>
+                    <button id=threeBtn" value="3" mathRole="operand" class="normalBtn">3</button>
+                    <button id="minusBtn" value="subtract" mathrole="operator" class="normalBtn">-</button>
                     <button id="delBtn" class="normalBtn">Del</button>
 
-                    <button id="zeroBtn" class="normalBtn">0</button>
+                    <button id="zeroBtn" value="0" mathRole="operand" class="normalBtn">0</button>
                     <button id="decimalBtn" class="normalBtn">.</button>
                     <button id="percentageBtn" class="normalBtn">%</button>
-                    <button id="plusBtn" class="normalBtn">+</button>
-                    <button id="equalBtn" class="normalBtn">=</button>
+                    <button id="plusBtn" value="add" mathrole="operator" class="normalBtn">+</button>
+                    <button id="equalBtn" value="equal" mathrole="operator" class="normalBtn">=</button>
 
                 </div>
             </div>

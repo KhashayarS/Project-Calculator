@@ -14,8 +14,10 @@ let num1Entered = false;
 const allBtnContainer = document.querySelector("#allBtnContainer");
 const clearBtn = document.querySelector("#clearBtn");
 const decimalBtn = document.querySelector("#decimalBtn");
+const topScreen = document.querySelector("#topScreen");
 const screen = document.querySelector("#screen");
 
+let naughtyImg = null;
 
 function addNumbers(num1, num2) {
     let result = num1 + num2;
@@ -65,7 +67,7 @@ function removeLeftZeros(numString) {
     let trimmedNumString = String(numString);
     let regexPattern = /^0+/;
     
-    trimmedNumString = trimmedNumString.replace(regexPattern, "");
+    if (!trimmedNumString.startsWith("0.")) trimmedNumString = trimmedNumString.replace(regexPattern, "");
 
     if (trimmedNumString === "") trimmedNumString = "0";
 
@@ -74,7 +76,18 @@ function removeLeftZeros(numString) {
 
 
 function updateScreen(displayValue) {
-    displayValue = removeLeftZeros(displayValue);
+
+    if (displayValue === 'Infinity' || !isFinite(displayValue)) {
+        // let naughtyImgHTML = '<img id="naughtyImg" src="./static/naughty_naughty.gif">';
+        naughtyImg = document.createElement("img");
+        naughtyImg.setAttribute("src", "./static/naughty_naughty.gif");
+        naughtyImg.id = "naughtyImg";
+        topScreen.appendChild(naughtyImg);
+        displayValue = "Naughty! Never divide a number by zero!";
+    } else {
+        displayValue = removeLeftZeros(displayValue);
+    }
+
     screen.innerText = displayValue;
 }
 
@@ -92,6 +105,7 @@ function clearAll() {
     num2 = null;
     operator = null;
     screen.innerText = "0";
+    if (topScreen.hasChildNodes(naughtyImg)) topScreen.removeChild(naughtyImg);
 }
 
 

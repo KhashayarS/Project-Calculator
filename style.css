@@ -1,5 +1,6 @@
 :root {
-    --screenColor: #272727;
+    --topScreenColor: #272727;
+    --screenColor; #3f3e3e;
     --calcBodyColor: #2C2C2C;
     --normalBtnColor: #373737;
     --eqaulSignColor: #0D761D;
@@ -24,6 +25,12 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+}
+
+#topScreen {
+    width: 300px;
+    height: 167px;
+    background-color: var(--topScreenColor);
 }
 
 #calcContainer {

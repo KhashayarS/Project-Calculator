@@ -96,16 +96,21 @@ function resetOperation() {
     num1 = null;
     num2 = null;
     operator = null;
+    currentResult = null;
+    displayOutput = 0;
     num1Entered = false;
+
 }
 
+function removeNaughty() {
+    if (topScreen.hasChildNodes(naughtyImg)) topScreen.removeChild(naughtyImg);
+}
 
 function clearAll() {
     num1 = null;
     num2 = null;
     operator = null;
     screen.innerText = "0";
-    if (topScreen.hasChildNodes(naughtyImg)) topScreen.removeChild(naughtyImg);
 }
 
 
@@ -163,6 +168,8 @@ allBtnContainer.addEventListener("click", (event) => {
     let targetValue = target.value;
     let isTargetANumber = isNumber(targetValue);
     let targetMathRole = target.getAttribute('mathrole');
+
+    removeNaughty();
     
     if (
         (targetMathRole === 'operand' && operator === null) ||
@@ -215,8 +222,9 @@ allBtnContainer.addEventListener("click", (event) => {
             currentResult = operate(num1, num2, operator);
         }
 
-        updateScreen(currentResult);
+        if (currentResult !== null)updateScreen(currentResult);
         resetOperation();
+
     } else if (targetValue === 'clearAll') {
         clearAll();
     } else if (targetValue === 'del') {

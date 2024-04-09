@@ -113,7 +113,8 @@ function deleteLastCharacter(numString, decimalBtn) {
     let trimmedNumString;
     let lastCharacter;
     
-    console.log(numString.length >= 1);
+    if (numString === null) numString = "0";
+
     if (numString.length >= 1) {
         lastCharacter = numString.slice(-1);
     }
@@ -216,6 +217,56 @@ allBtnContainer.addEventListener("click", (event) => {
         
  
 })
+
+
+function handleKeyboardEvent(event) {
+    let pertinentBtn = null;
+    const key = event.key;
+    
+    switch (true) {
+
+        case (key >= '0' && key <= '9'):
+            pertinentBtn = document.querySelector(`button[value="${key}"]`);
+            break;
+        
+        case (key === 'Enter' || key === '='):
+            pertinentBtn = document.querySelector('button[value="equal"]');
+            break;
+            
+        case (key === 'Delete' || key === 'Backspace'):
+            pertinentBtn = document.querySelector('button[value="del"');
+            break;
+
+        case (key === '+'):
+            pertinentBtn = document.querySelector('button[value="add"');
+            break;
+
+        case (key === '-'):
+            pertinentBtn = document.querySelector('button[value="subtract"');
+            break;
+
+        case (key === '*'):
+            pertinentBtn = document.querySelector('button[value="multiply"');
+            break;
+
+        case (key === '/'):
+            pertinentBtn = document.querySelector('button[value="divide"');
+            break;
+
+        case (key === '.'):
+            pertinentBtn = document.querySelector('button[value="addDecimal"');
+            break;
+
+    }
+
+
+    if (pertinentBtn) {
+        pertinentBtn.click();
+    }
+}
+
+
+document.addEventListener('keydown', handleKeyboardEvent);
 
 
 let startFunction = (function () {

@@ -9,6 +9,7 @@ let num2 = null;
 let operator = null;
 let currentResult = null;
 let displayOutput = 0;
+let num1Entered = false;
 
 const allBtnContainer = document.querySelector("#allBtnContainer");
 const clearBtn = document.querySelector("#clearBtn");
@@ -60,7 +61,20 @@ function isNumber(value) {
 }
 
 
+function removeLeftZeros(numString) {
+    let trimmedNumString = String(numString);
+    let regexPattern = /^0+/;
+    
+    trimmedNumString = trimmedNumString.replace(regexPattern, "");
+
+    if (trimmedNumString === "") trimmedNumString = "0";
+
+    return trimmedNumString
+}
+
+
 function updateScreen(displayValue) {
+    displayValue = removeLeftZeros(displayValue);
     screen.innerText = displayValue;
 }
 
@@ -69,6 +83,7 @@ function resetOperation() {
     num1 = null;
     num2 = null;
     operator = null;
+    num1Entered = false;
 }
 
 
@@ -96,9 +111,18 @@ function correctNumberForm(number, targetValue, decimalBtn) {
 
 function deleteLastCharacter(numString, decimalBtn) {
     let trimmedNumString;
-    let lastCharacter = numString.slice(-1);
+    let lastCharacter;
     
-    trimmedNumString = numString.slice(0, -1);
+    console.log(numString.length >= 1);
+    if (numString.length >= 1) {
+        lastCharacter = numString.slice(-1);
+    }
+
+    if (numString.length > 1) {
+        trimmedNumString = numString.slice(0, -1);
+    } else {
+        trimmedNumString = '0';
+    }
 
     if (lastCharacter === '.') {
         activateBtn(decimalBtn);
@@ -127,7 +151,8 @@ allBtnContainer.addEventListener("click", (event) => {
     
     if (
         (targetMathRole === 'operand' && operator === null) ||
-        (targetValue === 'addDecimal' && num2 === null)
+        (targetValue === 'addDecimal' && num2 === null) &&
+        (!num1Entered)
     ) {
        
         num1 = correctNumberForm(num1, targetValue, decimalBtn);
@@ -153,7 +178,8 @@ allBtnContainer.addEventListener("click", (event) => {
             updateScreen(currentResult);
             num2 = null;
         }
-
+        
+        num1Entered = true;
         operator = targetValue;
 
     } else if (

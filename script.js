@@ -94,6 +94,21 @@ function correctNumberForm(number, targetValue, decimalBtn) {
 }
 
 
+function deleteLastCharacter(numString, decimalBtn) {
+    let trimmedNumString;
+    let lastCharacter = numString.slice(-1);
+    
+    trimmedNumString = numString.slice(0, -1);
+
+    if (lastCharacter === '.') {
+        activateBtn(decimalBtn);
+    }
+
+    return trimmedNumString
+}
+
+
+
 function activateBtn(btn) {
     btn.disabled = false;
 }
@@ -117,14 +132,14 @@ allBtnContainer.addEventListener("click", (event) => {
        
         num1 = correctNumberForm(num1, targetValue, decimalBtn);
 
-        console.log('num1 =>', num1);
         currentResult = num1;
         updateScreen(num1);
 
     } else if (
         targetMathRole === 'operator' &&
         targetValue !== 'equal' &&
-        targetValue !== 'addDecimal'
+        targetValue !== 'addDecimal' &&
+        targetValue !== 'del'
     ) {
 
         activateBtn(decimalBtn);   
@@ -148,7 +163,6 @@ allBtnContainer.addEventListener("click", (event) => {
 
         num2 = correctNumberForm(num2, targetValue, decimalBtn);
         updateScreen(num2);
-        console.log('num2 =>', num2);
 
     } 
 
@@ -164,7 +178,16 @@ allBtnContainer.addEventListener("click", (event) => {
         resetOperation();
     } else if (targetValue === 'clearAll') {
         clearAll();
+    } else if (targetValue === 'del') {
+        if (num2 === null) {
+            num1 = deleteLastCharacter(num1, decimalBtn);
+            updateScreen(num1);
+        } else {
+            num2 = deleteLastCharacter(num2, decimalBtn);
+            updateScreen(num2);
+        }
     }
+        
  
 })
 

@@ -78,7 +78,6 @@ function removeLeftZeros(numString) {
 function updateScreen(displayValue) {
 
     if (displayValue === 'Infinity' || !isFinite(displayValue)) {
-        // let naughtyImgHTML = '<img id="naughtyImg" src="./static/naughty_naughty.gif">';
         naughtyImg = document.createElement("img");
         naughtyImg.setAttribute("src", "./static/naughty_naughty.gif");
         naughtyImg.id = "naughtyImg";
@@ -87,7 +86,8 @@ function updateScreen(displayValue) {
     } else {
         displayValue = removeLeftZeros(displayValue);
     }
-
+    
+    if (displayValue.includes(".")) displayValue = roundLongDecimals(displayValue);
     screen.innerText = displayValue;
 }
 
@@ -151,6 +151,18 @@ function deleteLastCharacter(numString, decimalBtn) {
     return trimmedNumString
 }
 
+
+function roundLongDecimals(numString, decimalPlaces=7) {
+    let numStringDoubleChecked = String(numString);
+    let seperatedParts = numStringDoubleChecked.split('.');
+    let integerPart = seperatedParts[0];
+    let decimalPart = seperatedParts[1].slice(0, 7);
+
+    let trimmedOutput = `${integerPart}.${decimalPart}`;
+    console.log(trimmedOutput);
+    
+    return trimmedOutput
+}
 
 
 function activateBtn(btn) {

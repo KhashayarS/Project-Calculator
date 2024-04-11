@@ -4,12 +4,12 @@
  *==========================================================*/
 
 /* Global variables and constants */
-let num1 = null;
-let num2 = null;
+// let num1 = null;
+// let num2 = null;
 let operator = null;
-let currentResult = null;
-let displayOutput = 0;
-let num1Entered = false;
+let inputNumber = "";
+let currentResult = "";
+let isFirstNumEntered = false;
 
 const allBtnContainer = document.querySelector("#allBtnContainer");
 const clearBtn = document.querySelector("#clearBtn");
@@ -52,8 +52,10 @@ function operate(num1, num2, operator) {
     else if (operator === 'subtract') output = subtractNumbers(num1, num2);
     else if (operator === 'multiply') output = multiplyNumbers(num1, num2);
     else if (operator === 'divide') output = divideNumbers(num1, num2);
+    
+    outputStr = String(output);
 
-    return output
+    return outputStr
 }
 
 
@@ -92,25 +94,17 @@ function updateScreen(displayValue) {
 }
 
 
-function resetOperation() {
-    num1 = null;
-    num2 = null;
-    operator = null;
-    currentResult = null;
-    displayOutput = 0;
-    num1Entered = false;
-
-}
-
 function removeNaughty() {
     if (topScreen.hasChildNodes(naughtyImg)) topScreen.removeChild(naughtyImg);
 }
 
 function clearAll() {
-    num1 = null;
-    num2 = null;
+    inputNumber = "";
+    currentResult = "";
     operator = null;
+    isFirstNumEntered = false;
     screen.innerText = "0";
+    removeNaughty();
 }
 
 
@@ -159,7 +153,6 @@ function roundLongDecimals(numString, decimalPlaces=7) {
     let decimalPart = seperatedParts[1].slice(0, 7);
 
     let trimmedOutput = `${integerPart}.${decimalPart}`;
-    console.log(trimmedOutput);
     
     return trimmedOutput
 }
@@ -184,15 +177,14 @@ allBtnContainer.addEventListener("click", (event) => {
     removeNaughty();
     
     if (
-        (targetMathRole === 'operand' && operator === null) ||
-        (targetValue === 'addDecimal' && num2 === null) &&
-        (!num1Entered)
+        (targetMathRole === 'operand') ||
+        (targetValue === 'addDecimal') &&
+        (!isFirstNumEntered)
     ) {
        
-        num1 = correctNumberForm(num1, targetValue, decimalBtn);
+        inputNumber = correctNumberForm(inputNumber, targetValue, decimalBtn);
 
-        currentResult = num1;
-        updateScreen(num1);
+        updateScreen(inputNumber);
 
     } else if (
         targetMathRole === 'operator' &&
@@ -200,53 +192,58 @@ allBtnContainer.addEventListener("click", (event) => {
         targetValue !== 'addDecimal' &&
         targetValue !== 'del'
     ) {
-
+        
         activateBtn(decimalBtn);   
         
-        if (currentResult !== null) num1 = currentResult;
-
-        if (num2 === null) {
-            currentResult = num1;
-        } else {
-            currentResult = operate(num1, num2, operator);
-            updateScreen(currentResult);
-            num2 = null;
+        if (!isFirstNumEntered) {
+            currentResult = inputNumber;
+            isFirstNumEntered = true;
+        } else if (operator !== null) {
+            currentResult = operate(currentResult, inputNumber, operator);
         }
         
-        num1Entered = true;
         operator = targetValue;
+        inputNumber = "";
+
+        updateScreen(currentResult);
+        
 
     } else if (
         (targetMathRole === 'operand' && operator !== null) ||
         targetValue === 'addDecimal'
     ) {
-
-        num2 = correctNumberForm(num2, targetValue, decimalBtn);
-        updateScreen(num2);
+        
+        if (inputNumber === "") inputNumber = "0";
+        inputNumber = correctNumberForm(inputNumber, targetValue, decimalBtn);
+        updateScreen(inputNumber);
 
     } 
 
-    if (targetValue === 'equal') {
+    if (targetValue === 'equal' && currentResult !=="") {
 
         activateBtn(decimalBtn);
 
-        if (num1 && num2 && operator) {
-            currentResult = operate(num1, num2, operator);
+        if (inputNumber && currentResult && operator) {
+            currentResult = operate(currentResult, inputNumber, operator);
         }
 
-        if (currentResult !== null)updateScreen(currentResult);
-        resetOperation();
+        if (currentResult !== null) updateScreen(currentResult);
+        
+        inputNumber = "";
+        operator = null;
 
     } else if (targetValue === 'clearAll') {
+
         clearAll();
+
     } else if (targetValue === 'del') {
-        if (num2 === null) {
-            num1 = deleteLastCharacter(num1, decimalBtn);
-            updateScreen(num1);
-        } else {
-            num2 = deleteLastCharacter(num2, decimalBtn);
-            updateScreen(num2);
-        }
+        
+        if (inputNumber !== "") {
+
+            inputNumber = deleteLastCharacter(inputNumber, decimalBtn);
+            updateScreen(inputNumber);
+        }   
+
     }
         
  

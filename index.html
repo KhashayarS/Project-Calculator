@@ -5,6 +5,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Project: Calculator</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&d>isplay=swap" rel="stylesheet">
         <link rel="stylesheet" href="./style.css">
         <script defer src="./script.js"></script>
     </head>
@@ -16,7 +19,7 @@
                 <div id="screen"></div>
                 <div id="allBtnContainer">
 
-                    <button id="clearBtn" value="clearAll" mathrole="operator" class="normalBtn">AC</button>
+                    <button id="clearBtn" value="clearAll" mathrole="operator" class="normalBtn clearBtn">AC</button>
                     <button id="openBracketBtn" class="normalBtn" disabled>(</button>
                     <button id="closeBracketBtn" class="normalBtn" disabled>)</button>
                     <button id="moduloBtn" class="normalBtn" disabled>mod</button>
@@ -38,13 +41,13 @@
                     <button id="twoBtn" value="2" mathRole="operand" class="normalBtn">2</button>
                     <button id=threeBtn" value="3" mathRole="operand" class="normalBtn">3</button>
                     <button id="minusBtn" value="subtract" mathrole="operator" class="normalBtn">-</button>
-                    <button id="delBtn" value="del" mathrole="operator" class="normalBtn">Del</button>
+                    <button id="delBtn" value="del" mathrole="operator" class="normalBtn deleteBtn">Del</button>
 
                     <button id="zeroBtn" value="0" mathRole="operand" class="normalBtn">0</button>
                     <button id="decimalBtn" value="addDecimal" mathrole="operator" class="normalBtn">.</button>
                     <button id="percentageBtn" class="normalBtn" disabled>%</button>
                     <button id="plusBtn" value="add" mathrole="operator" class="normalBtn">+</button>
-                    <button id="equalBtn" value="equal" mathrole="operator" class="normalBtn">=</button>
+                    <button id="equalBtn" value="equal" mathrole="operator" class="normalBtn equalBtn">=</button>
 
                 </div>
 

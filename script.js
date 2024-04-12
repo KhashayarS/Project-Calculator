@@ -84,7 +84,8 @@ function updateScreen(displayValue) {
         naughtyImg.setAttribute("src", "./static/naughty_naughty.gif");
         naughtyImg.id = "naughtyImg";
         topScreen.appendChild(naughtyImg);
-        displayValue = "Naughty! Never divide a number by zero!";
+        displayValue = "NAUGHTY, NAUGHTY! NEVER DIVIDE A NUMBER BY ZERO!";
+        screen.classList.add("naughty");
     } else {
         displayValue = removeLeftZeros(displayValue);
     }
@@ -96,6 +97,7 @@ function updateScreen(displayValue) {
 
 function removeNaughty() {
     if (topScreen.hasChildNodes(naughtyImg)) topScreen.removeChild(naughtyImg);
+    screen.classList.remove("naughty");
 }
 
 function clearAll() {

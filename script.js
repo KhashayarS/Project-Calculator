@@ -179,11 +179,10 @@ allBtnContainer.addEventListener("click", (event) => {
     removeNaughty();
     
     if (
-        (targetMathRole === 'operand') ||
-        (targetValue === 'addDecimal') &&
+        ( (targetMathRole === 'operand') || (targetValue === 'addDecimal') ) &&
         (!isFirstNumEntered)
     ) {
-       
+        
         inputNumber = correctNumberForm(inputNumber, targetValue, decimalBtn);
 
         updateScreen(inputNumber);
@@ -219,7 +218,23 @@ allBtnContainer.addEventListener("click", (event) => {
         inputNumber = correctNumberForm(inputNumber, targetValue, decimalBtn);
         updateScreen(inputNumber);
 
-    } 
+    } else if (
+        ( (targetMathRole === 'operand') || (targetValue === 'addDecimal') ) &&
+        targetMathRole === 'operand' &&
+        currentResult !== null &&
+        operator === null &&
+        isFirstNumEntered === true
+    ) {
+        // This executes when the user enters a new number when the previous result is being displayed, so the previous result would get removed and operation begins with new number
+
+        currentResult = "";
+        isFirstNumEntered = false;
+
+        inputNumber = correctNumberForm(inputNumber, targetValue, decimalBtn);
+
+        updateScreen(inputNumber);
+    }
+
 
     if (targetValue === 'equal' && currentResult !=="") {
 

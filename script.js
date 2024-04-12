@@ -79,6 +79,8 @@ function removeLeftZeros(numString) {
 
 function updateScreen(displayValue) {
 
+    if (typeof displayValue === 'string' && displayValue.startsWith(".")) displayValue = "0" + displayValue;
+
     if (displayValue === 'Infinity' || !isFinite(displayValue)) {
         naughtyImg = document.createElement("img");
         naughtyImg.setAttribute("src", "./static/naughty_naughty.gif");

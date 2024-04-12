@@ -21,7 +21,6 @@ body {
 }
 
 .container {
-    border: 2px solid hotpink;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +35,7 @@ body {
 
 #screen {
     height: 80px;
-    font-size: 40px;
+    font-size: 30px;
     font-family: "Orbitron", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -48,7 +47,7 @@ body {
 
 #calcContainer {
     width: 300px;
-    height: 500px;
+    height: 480px;
     background-color: var(--calcBodyColor);
 }
 
@@ -56,9 +55,14 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .normalBtn {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
     width: 55px;
     height: 40px;
     background-color: var(--normalBtnColor);
